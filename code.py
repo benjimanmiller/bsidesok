@@ -147,31 +147,42 @@ def message_mode():
     input_text = "benjimanmiller.com"
     morse_code = text_to_morse(input_text)
 
-    dash_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-    dot_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    dash_color = (
+        random.randint(0, 255),
+        random.randint(0, 255),
+        random.randint(0, 255),
+    )
+    
+    dot_color = (
+        random.randint(0, 255), 
+        random.randint(0, 255), 
+        random.randint(0, 255)
+    )
 
+    print(f"Input message to be displayed in Morse Code: {input_text}")
+    
     for digit in morse_code:
         if digit == "-":
-            print("-")
+            print(f"Blinking Pixels: {digit}, Color: {dash_color}")
             for i in range(TORNADO_PIXELS):
                 pixels_DIO_Tornado[i] = dash_color
             pixels_DIO_Tornado.show()
-            time.sleep(0.7)
+            time.sleep(0.8)
             clear_leds()
-            time.sleep(0.5)
+            time.sleep(0.25)
         if digit == ".":
-            print(".")
+            print(f"Blinking Pixels: {digit}, Color: {dot_color}")
             for i in range(TORNADO_PIXELS):
                 pixels_DIO_Tornado[i] = dot_color
             pixels_DIO_Tornado.show()
-            time.sleep(0.3)
+            time.sleep(0.4)
             clear_leds()
-            time.sleep(0.3)
+            time.sleep(0.25)
         if digit == "X":
             print(" ")
             clear_leds()
             time.sleep(0.3)
-    print(f"Input Message Displayed in Morse Code: {input_text}")
+
     time.sleep(1)
 
 
