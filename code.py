@@ -147,11 +147,14 @@ def message_mode():
     input_text = "benjimanmiller.com"
     morse_code = text_to_morse(input_text)
 
+    dash_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    dot_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
     for digit in morse_code:
         if digit == "-":
             print("-")
             for i in range(TORNADO_PIXELS):
-                pixels_DIO_Tornado[i] = RED
+                pixels_DIO_Tornado[i] = dash_color
             pixels_DIO_Tornado.show()
             time.sleep(0.7)
             clear_leds()
@@ -159,7 +162,7 @@ def message_mode():
         if digit == ".":
             print(".")
             for i in range(TORNADO_PIXELS):
-                pixels_DIO_Tornado[i] = BLUE
+                pixels_DIO_Tornado[i] = dot_color
             pixels_DIO_Tornado.show()
             time.sleep(0.3)
             clear_leds()
