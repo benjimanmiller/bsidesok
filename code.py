@@ -106,10 +106,16 @@ async def ir_attack():
     # And IR attack mode that transmitter NEX encoded IR blasts to push buttons on NEC controlled devices. 
     global transmitter, pulseout
     try:
-        tv_vendors = [0x20, 0x01, 0xE0, 0x01, 0xF2]
-        #common_cmds = [0x0C, 0x02, 0x1A, 0x30, 0xE0, 0x10, 0xF4]
 
-        for address in tv_vendors: #tv_vendors for a smaller list.. range(256) for a bruteforce
+        # Vizio = 0x20
+        # LG = 0x01
+        # Samsung = 0xE0
+        # Sharp = 0x01
+        # Toshiba = 0xF2
+        tv_vendors = [0x20, 0x01, 0xE0, 0x01, 0xF2]
+        common_cmds = [0x0C, 0x02, 0x1A, 0x30, 0xE0, 0x10, 0xF4]
+
+        for address in range(256): #tv_vendors for a smaller list.. range(256) for a bruteforce
             for command in range(256): #common_cmds for a smaller list.. range(256) for a bruteforce
                 nec_codes = [address, ~address & 0xFF, command, ~command & 0xFF]
 
@@ -125,9 +131,9 @@ async def ir_attack():
                     pixels_DIO_Tornado[i] = color
                 pixels_DIO_Tornado.show()
 
-                for i in range(5):
+                for i in range(1):
                     transmitter.transmit(pulseout, bit_list)
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(0.2)
 
     except Exception as e:
         print(f"Error Transmitting: {e}")
