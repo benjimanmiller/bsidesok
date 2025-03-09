@@ -7,7 +7,4 @@ This script is to be placed in the main directory of the Bsides2024 RPI Pico boa
 Currently this script has 3 modes:  
 Default - Random Blink - A random LED blinks a random color.  
 BTN_0 - Morse Code Message - This mode blinks the LEDs to display a message encoded via morse code.  
-BTN_1 - Red - This mode just turns all the light red.  
-
-### Upcoming
-I am going to change Red mode into IR Attack. It will uses the badges built in IR transiever to blast the "power off" code for all possible makes of TVs. The LEDs will blink as the attack blasts IR signls. 
+BTN_1 - IR Attack - This mode uses the badges built in IR transiever to blast all possible command codes for all possible venoders of devices thate use NEC IR encoding. The LEDs will blink as the attack blasts IR signls.   
