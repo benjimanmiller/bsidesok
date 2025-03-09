@@ -33,7 +33,7 @@ btn_1 = digitalio.DigitalInOut(board.GP1)
 btn_1.direction = digitalio.Direction.INPUT
 btn_1.pull = digitalio.Pull.DOWN
 
-# IR receiver and transmitters
+# IR Receiver and Transmitters
 pulsein = pulseio.PulseIn(board.GP23, maxlen=200, idle_state=True)
 decoder = adafruit_irremote.GenericDecode()
 nonblocking_decoder = adafruit_irremote.NonblockingGenericDecode(pulsein)
@@ -78,7 +78,7 @@ async def blink(message_toggle, attack_toggle):
         await asyncio.sleep(0.5)
 
 async def ir_listen():
-    # An asynchronous ir listener that listens for all incoming IR transmittions. 
+    # An asynchronous ir listener that listens for all incoming IR transmissions
     while True:
         pulsein.resume()
 
