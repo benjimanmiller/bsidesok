@@ -20,6 +20,9 @@ pixels_DIO_Tornado = neopixel.NeoPixel(
     board.GP10, TORNADO_PIXELS, brightness=0.05, auto_write=False
 )
 
+#GPIO19 SAO_TX_H
+pixels_SAO_H = neopixel.NeoPixel(board.GP19, 4, brightness=0.05, auto_write=False)
+
 # GPIO13 LED Indicator
 pin_led = digitalio.DigitalInOut(board.GP13)
 pin_led.direction = digitalio.Direction.OUTPUT
@@ -94,6 +97,15 @@ async def ir_listen():
             decoded_bits = decoder.decode_bits(pulses)
             decoded_hex = " ".join(f"0x{byte:02X}" for byte in decoded_bits)
             print("Decoded bits (Hex):", decoded_hex)
+
+            #Blinks 2024 when an IR is received
+            for i in range(4):
+                pixels_SAO_H[i] = (255, 0, 0)
+            pixels_SAO_H.show()
+            await asyncio.sleep(0.1)
+            for i in range(4):
+                pixels_SAO_H[i] = (0, 0, 0)
+            pixels_SAO_H.show()
 
         except adafruit_irremote.IRNECRepeatException:
             print("NEC repeat detected, continuing.")
