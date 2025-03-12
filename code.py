@@ -8,7 +8,6 @@ import asyncio
 
 # Constants
 TORNADO_PIXELS = 40
-RED = (255, 0, 0)
 
 # Enable the LED Power (Pin 25)
 pin_led_en = digitalio.DigitalInOut(board.GP25)
