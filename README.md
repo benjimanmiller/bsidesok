@@ -9,4 +9,4 @@ This script has three modes:
 - **BTN_0 - Morse Code Message**: This mode blinks the LEDs to display a message encoded in Morse code.  
 - **BTN_1 - IR Attack**: This mode uses the badge's built-in IR transceiver to blast all possible command codes for all possible vendors of devices that use NEC IR encoding. The LEDs will blink as the attack blasts IR signals.  
 
-Additionally, running passively in the background is an IR listener that will display all received IR signals on the console and blink the 2024 LEDs red. 
+Additionally, running passively in the background is an IR listener that will display all received IR signals on the console and blink the 2024 LEDs a random color and the onboard red LED. 
