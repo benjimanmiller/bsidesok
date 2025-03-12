@@ -20,6 +20,9 @@ pixels_DIO_Tornado = neopixel.NeoPixel(
     board.GP10, TORNADO_PIXELS, brightness=0.05, auto_write=False
 )
 
+#GPIO6 SAO_TX_45
+#pixels_SAO_45 = neopixel.NeoPixel(board.GP6, 4, brightness=0.05, auto_write=False)
+
 #GPIO19 SAO_TX_H
 pixels_SAO_H = neopixel.NeoPixel(board.GP19, 4, brightness=0.05, auto_write=False)
 
@@ -100,12 +103,16 @@ async def ir_listen():
 
             #Blinks 2024 when an IR is received
             for i in range(4):
-                pixels_SAO_H[i] = (255, 0, 0)
+                pixels_SAO_H[i] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
             pixels_SAO_H.show()
+            pin_led.value = True
+
             await asyncio.sleep(0.1)
             for i in range(4):
                 pixels_SAO_H[i] = (0, 0, 0)
             pixels_SAO_H.show()
+            pin_led.value = False
+
 
         except adafruit_irremote.IRNECRepeatException:
             print("NEC repeat detected, continuing.")
@@ -124,7 +131,8 @@ async def ir_attack():
         # Samsung = 0xE0
         # Sharp = 0x01
         # Toshiba = 0xF2
-        tv_vendors = [0x20, 0x01, 0xE0, 0x01, 0xF2]
+        # Roku = 0xBC
+        tv_vendors = [0x20, 0x01, 0xE0, 0x01, 0xF2, 0xBC]
         common_cmds = [0x0C, 0x02, 0x1A, 0x30, 0xE0, 0x10, 0xF4]
 
         for address in range(256): #tv_vendors for a smaller list.. range(256) for a bruteforce
